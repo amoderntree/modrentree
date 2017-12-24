@@ -11,12 +11,15 @@ if ( isset($_POST['email']) && isset($_POST['name']) && isset($_POST['message'])
     }
   }
 
-$headers = 'From: ' . $_POST["name"] . '<' . $_POST["email"] . '>' . "\r\n" .
+  $goto_after_mail = "https://moderntree.herokuapp.com/";
+  $headers = 'From: ' . $_POST["name"] . '<' . $_POST["email"] . '>' . "\r\n" .
     'Reply-To: ' . $_POST["email"] . "\r\n" .
     'X-Mailer: PHP/' . phpversion();
 
   //
-  mail( "amoderntree@gmail.com", $_POST['message'], $headers );
+  if mail( "amoderntree@gmail.com", $_POST['message'], $headers ){
+    header("Location: ".$goto_after_mail);
+  }
  
   //      ^
   //  Replace with your email 
